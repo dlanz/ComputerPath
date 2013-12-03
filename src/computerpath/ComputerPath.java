@@ -1,12 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package computerpath;
-
 /**
- *
- * @author Dans
+ * @author Dan
  */
 public class ComputerPath {
     private int[][]relation;
@@ -36,16 +30,33 @@ public class ComputerPath {
     
     public void process() {
     
-        for(int k = 0; k < this.size-1; k++){
-           for(int i = 0; i < this.size; i++){
-               for(int j = 0; j < this.size; j++){
-                   if(this.relation[i][k] == 1 || this.relation[k][j] == 1){
-                        this.closure[i][j] = 1;    
-                   }
-               } 
-               this.relation = this.closure;
-           }
-       }
+        for(int i = 0; i < this.size; i++){
+            for(int j = 0; j < this.size; j++){
+                
+                if(this.relation[i][j] == 1){
+                    this.closure[i][j] = 1;   
+                }else{
+                    for(int k = 0; k < this.size; k++){
+                        if(this.relation[i][k] == 1 && this.relation[k][j] == 1){
+                            this.closure[i][j] = 1;
+                        }
+                    }                    
+                }
+            }
+        }
+    }
+    
+    public void outputClosure(){
+        
+        for (int i=0; i < this.size; i++){
+            for(int j=0; j < this.size; j++){
+                 if(j == this.size-1){
+                    System.out.println("'"+this.closure[i][j]+"'");
+                 }else{
+                     System.out.print("'"+this.closure[i][j]+"'");
+                 }
+            }
+        }  
     }
     
     public void outputRelation(){
@@ -59,19 +70,5 @@ public class ComputerPath {
                  }
             }
         }  
-    }
-    
-    public void outputClosure(){
-        
-        
-        for (int i=0; i < this.size; i++){
-            for(int j=0; j < this.size; j++){
-                 if(j == this.size-1){
-                    System.out.println("'"+this.closure[i][j]+"'");
-                 }else{
-                     System.out.print("'"+this.closure[i][j]+"'");
-                 }
-            }
-        }  
-    }
+    }  
 }
