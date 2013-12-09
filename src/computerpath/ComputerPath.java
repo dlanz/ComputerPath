@@ -35,8 +35,8 @@ public class ComputerPath {
         
             for(int step = k; step >= 0; step--){
                 for(int middle = 0; middle < this.size; middle++){
-                    System.out.println("i = "+i+": j = "+j+": k = "+k+": middle = "+middle);
-                    System.out.println(this.relation[i][middle][0]);
+//                    System.out.println("i = "+i+": j = "+j+": k = "+k+": middle = "+middle);
+//                    System.out.println(this.relation[i][middle][0]);
                     if(this.relation[i][middle][0] == 1){
                         if(this.process(middle, j, k-1) == 1){
                             return 1;
