@@ -7,9 +7,10 @@ public class test {
     
         int[][] theArray = new int[6][6];
         int [][] closure = new int[6][6];
+        int size = 6;
         
-        for (int i=0; i < 6; i++){
-            for(int j=0; j < 6; j++){
+        for (int i=0; i < size; i++){
+            for(int j=0; j < size; j++){
                 theArray[i][j] = 0;
                 closure[i][j] = 0;
             }
@@ -20,7 +21,7 @@ public class test {
 
         thisCP.setClosure(closure);
 
-        thisCP.setSize(6);
+        thisCP.setSize(size);
 
         theArray[0][1] = 1;
         theArray[0][5] = 1;
@@ -41,7 +42,22 @@ public class test {
         
         thisCP.setRelation(theArray);
         
-        thisCP.process();
-        thisCP.outputClosure();
+        for (int i=0; i < size; i++){
+            for(int j=0; j < size; j++){
+                for(int k=0; k < size; k++){
+                    closure[i][j] = thisCP.process(i, j, k);
+                }
+            }
+        }
+        
+        for (int i=0; i < 6; i++){
+            for(int j=0; j < 6; j++){
+                 if(j == 5){
+                    System.out.println("'"+theArray[i][j]+"'");
+                 }else{
+                     System.out.print("'"+theArray[i][j]+"'");
+                 }
+            }
+        }  
     }
 }
